@@ -1,0 +1,20 @@
+{
+  "name": "rsschoolnode",
+  "version": "1.0.0",
+  "description": "hello from that",
+  "main": "cipher.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sashatkach/nodejsCourse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sashatkach/nodejsCourse/issues"
+  },
+  "homepage": "https://github.com/sashatkach/nodejsCourse#readme"
+}
