@@ -45,6 +45,10 @@ function run(){
             cipherStream,
             process.stdout
         )
+        .catch(error => {
+            process.stderr.write('My custom permission denied of standart stream\n');
+            process.exit(-1);
+        });
     } 
     else if (input === 'no file')
     {
@@ -52,7 +56,11 @@ function run(){
             process.stdin,
             cipherStream,
             fs.createWriteStream(output, {flags: 'a'})
-        );
+        )
+        .catch(error => {
+            process.stderr.write('My custom permission denied on output file\n');
+            process.exit(4);
+        });
     } 
     else if(output === 'no file') 
     {
@@ -60,7 +68,11 @@ function run(){
             fs.createReadStream(input),
             cipherStream,
             process.stdout
-        );
+        )
+        .catch(error => {
+            process.stderr.write('My custom permission denied on input file\n');
+            process.exit(5);
+        });
     } 
     else
     {
@@ -68,7 +80,11 @@ function run(){
             fs.createReadStream(input),
             cipherStream,
             fs.createWriteStream(output, {flags: 'a'})
-        );
+        )
+        .catch(error => {
+            process.stderr.write('My custom permission denied of one from both files\n');
+            process.exit(6);
+        });
     }
 }
 
