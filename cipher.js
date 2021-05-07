@@ -61,7 +61,7 @@ class CipherStream extends Transform
         let cipherChunk = this._processStringToCipher(chunk.toString('utf-8').trim());
         this.push(cipherChunk + '\n');
         cb();
-    };
+    }
 }
 
 export { alphabetLength };

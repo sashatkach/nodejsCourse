@@ -5,7 +5,7 @@ const PERMITTED_FLAGS = {shift: ['-s', '--shift'], action: ['-a', '--action', ],
 const idxShift = process.argv.indexOf(PERMITTED_FLAGS.shift[0]) !== -1 
     ? process.argv.indexOf(PERMITTED_FLAGS.shift[0]) : process.argv.indexOf(PERMITTED_FLAGS.shift[1]) !== -1 
     ? process.argv.indexOf(PERMITTED_FLAGS.shift[1]) : 'error shift';
-const shift = idxShift !== 'error shift' && Number.isInteger(+process.argv[idxShift + 1]) ? process.argv[idxShift + 1] : 'error shift';
+let shift = idxShift !== 'error shift' && Number.isInteger(+process.argv[idxShift + 1]) ? process.argv[idxShift + 1] : 'error shift';
 
 if(Math.abs(shift) >= alphabetLength / 2)
 {

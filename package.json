@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sashatkach/nodejsCourse/issues"
   },
-  "homepage": "https://github.com/sashatkach/nodejsCourse#readme"
+  "homepage": "https://github.com/sashatkach/nodejsCourse#readme",
+  "devDependencies": {
+    "eslint": "^7.25.0"
+  }
 }
