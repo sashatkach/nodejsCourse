@@ -49,7 +49,7 @@ function run(){
             cipherStream,
             process.stdout
         )
-        .catch(error => {
+        .catch(() => {
             process.stderr.write('My custom permission denied of standart stream\n');
             process.exit(-1);
         });
@@ -61,7 +61,7 @@ function run(){
             cipherStream,
             fs.createWriteStream(path.resolve(__dirname, output), {flags: 'a'})
         )
-        .catch(error => {
+        .catch(() => {
             process.stderr.write('My custom permission denied on output file\n');
             process.exit(4);
         });
@@ -73,7 +73,7 @@ function run(){
             cipherStream,
             process.stdout
         )
-        .catch(error => {
+        .catch(() => {
             process.stderr.write('My custom permission denied on input file\n');
             process.exit(5);
         });
@@ -85,7 +85,7 @@ function run(){
             cipherStream,
             fs.createWriteStream(path.resolve(__dirname, output), {flags: 'a'})
         )
-        .catch(error => {
+        .catch(() => {
             process.stderr.write('My custom permission denied of one from both files\n');
             process.exit(6);
         });
