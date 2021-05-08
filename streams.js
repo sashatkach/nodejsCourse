@@ -3,6 +3,10 @@ import  CipherStream from './cipher.js';
 import { shift, action, input, output , setOutput, setInput} from './parsingConsole.js';
 import { pipeline } from 'stream';
 import { promisify } from 'util';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path'
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const pipelineAsync = promisify(pipeline);
 
 function checkError()
@@ -18,7 +22,7 @@ function checkError()
         {
             process.stderr.write('Both of files doesn\'t exist\n');
             process.exit(2);
-        }  
+        }
         else if(!fs.existsSync(input))
         {
             setInput('no file');
@@ -26,7 +30,7 @@ function checkError()
         else if(!fs.existsSync(output))
         {
             setOutput('no file');
-        } 
+        }
     }
     catch(e)
     {
@@ -49,23 +53,23 @@ function run(){
             process.stderr.write('My custom permission denied of standart stream\n');
             process.exit(-1);
         });
-    } 
+    }
     else if (input === 'no file')
     {
         pipelineAsync(
             process.stdin,
             cipherStream,
-            fs.createWriteStream(output, {flags: 'a'})
+            fs.createWriteStream(path.resolve(__dirname, output), {flags: 'a'})
         )
         .catch(error => {
             process.stderr.write('My custom permission denied on output file\n');
             process.exit(4);
         });
-    } 
-    else if(output === 'no file') 
+    }
+    else if(output === 'no file')
     {
         pipelineAsync(
-            fs.createReadStream(input),
+            fs.createReadStream(path.resolve(__dirname, input)),
             cipherStream,
             process.stdout
         )
@@ -73,13 +77,13 @@ function run(){
             process.stderr.write('My custom permission denied on input file\n');
             process.exit(5);
         });
-    } 
+    }
     else
     {
         pipelineAsync(
-            fs.createReadStream(input),
+            fs.createReadStream(path.resolve(__dirname, input)),
             cipherStream,
-            fs.createWriteStream(output, {flags: 'a'})
+            fs.createWriteStream(path.resolve(__dirname, output), {flags: 'a'})
         )
         .catch(error => {
             process.stderr.write('My custom permission denied of one from both files\n');
